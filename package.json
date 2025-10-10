@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "preinstall": "node scripts/check-node-version.js",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",

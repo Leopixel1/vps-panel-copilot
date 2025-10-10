@@ -247,6 +247,25 @@ pnpm build
 - [ ] Resource usage monitoring
 - [ ] Automated scaling
 
+## Troubleshooting
+
+### pnpm install fails with SyntaxError
+
+If you encounter this error:
+```
+SyntaxError: Unexpected token '.' in pnpm.cjs
+```
+
+This means your Node.js version is too old. **Solution:**
+
+1. Check Node.js version: `node --version`
+2. Upgrade to Node.js 18+:
+   - Using nvm: `nvm install 18 && nvm use 18`
+   - Or download from: https://nodejs.org/
+3. Retry: `pnpm install`
+
+See [SETUP.md](SETUP.md#pnpm-install-fails-with-syntaxerror) for detailed instructions.
+
 ## Contributing
 
 Contributions are welcome! Please read our contributing guidelines before submitting PRs.
