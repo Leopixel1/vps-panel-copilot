@@ -275,6 +275,69 @@ The VM will:
 
 ## Troubleshooting
 
+### pnpm install fails with SyntaxError
+
+**Error:**
+```
+/usr/local/lib/node_modules/pnpm/bin/pnpm.cjs:18
+  if(!require('module')?.enableCompileCache?.())
+                        ^
+
+SyntaxError: Unexpected token '.'
+```
+
+**Cause:** This error occurs when Node.js version is older than 14, which doesn't support optional chaining (`?.`) syntax. The project requires Node.js 18 or higher.
+
+**Solution:**
+
+1. **Check your current Node.js version:**
+   ```bash
+   node --version
+   ```
+
+2. **Update Node.js to version 18 or higher:**
+
+   **Option A: Using nvm (recommended):**
+   ```bash
+   # Install nvm if not already installed
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+   
+   # Install Node.js 18
+   nvm install 18
+   nvm use 18
+   nvm alias default 18
+   ```
+
+   **Option B: Using package manager:**
+   ```bash
+   # Ubuntu/Debian
+   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+   sudo apt-get install -y nodejs
+   
+   # CentOS/RHEL
+   curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
+   sudo yum install -y nodejs
+   ```
+
+   **Option C: Download from nodejs.org:**
+   - Visit https://nodejs.org/
+   - Download and install Node.js 18 LTS or higher
+
+3. **Verify the installation:**
+   ```bash
+   node --version  # Should show v18.x.x or higher
+   ```
+
+4. **Install pnpm (if needed):**
+   ```bash
+   npm install -g pnpm@8.15.0
+   ```
+
+5. **Try the installation again:**
+   ```bash
+   pnpm install
+   ```
+
 ### VM Creation Fails
 
 1. Check Proxmox node connectivity:
