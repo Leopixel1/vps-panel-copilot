@@ -22,7 +22,7 @@ export class ProxmoxService {
       });
       this.clients.set(nodeId, client);
     }
-    return this.clients.get(nodeId);
+    return this.clients.get(nodeId)!;
   }
 
   async authenticate(nodeId: string, credentials: ProxmoxCredentials): Promise<string> {

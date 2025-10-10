@@ -73,7 +73,7 @@ export class IpamService {
     const ip = await this.ipAddressRepo.findOne({ where: { id: ipId } });
     if (ip) {
       ip.status = IpStatus.AVAILABLE;
-      ip.vm = null;
+      ip.vm = null as any;
       await this.ipAddressRepo.save(ip);
     }
   }
