@@ -23,7 +23,12 @@ export default function RegisterPage() {
       localStorage.setItem('user', JSON.stringify(response.user));
       router.push('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed');
+      const message = err.response?.data?.message;
+      if (Array.isArray(message)) {
+        setError(message.join(', '));
+      } else {
+        setError(message || 'Registration failed');
+      }
     } finally {
       setLoading(false);
     }
